@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: stiind_db
+    ports:
+      - '4120:5432'
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: stiind
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d/
