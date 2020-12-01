@@ -1,11 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
-import { Field, ObjectType, ID, Root } from 'type-graphql'
+import {
+	Entity, PrimaryGeneratedColumn, Column, BaseEntity,
+} from 'typeorm'
+import {
+	Field, ObjectType, ID, Root,
+} from 'type-graphql'
 import { sign } from 'jsonwebtoken'
 
 @ObjectType()
 @Entity()
 export class User extends BaseEntity {
-
     @Field(() => ID)
     @PrimaryGeneratedColumn()
     id: number
@@ -31,12 +34,12 @@ export class User extends BaseEntity {
 
     @Field()
     name(@Root() parent: User): string {
-        return `${parent.firstName} ${parent.lastName}`
+    	return `${parent.firstName} ${parent.lastName}`
     }
 
     @Field()
     token(@Root() response: User): string {
-        const accessToken = sign({ id: response.id, role: response.role }, 'Fj54j1MvNRh0ZLt')
-        return accessToken
+    	const accessToken = sign({ id: response.id, role: response.role }, 'Fj54j1MvNRh0ZLt')
+    	return accessToken
     }
 }

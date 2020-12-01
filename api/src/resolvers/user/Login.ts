@@ -2,31 +2,31 @@ import { Resolver, Mutation, Arg } from 'type-graphql'
 import bcrypt from 'bcrypt'
 
 import { User } from '@entity/User'
-import { LoginInput } from './login/LoginInput';
+import { LoginInput } from './login/LoginInput'
 
 @Resolver()
 export class LoginResolver {
     @Mutation(() => User, { nullable: true })
-    async login(
+	async login(
         @Arg('data') {
-            email,
-            password
+        	email,
+        	password,
         }: LoginInput,
-    ): Promise<User | null> {
-        const user = await User.findOne({
-            where: { email }
-        })
+	): Promise<User | null> {
+		const user = await User.findOne({
+			where: { email },
+		})
 
-        if (!user) {
-            return null
-        }
+		if (!user) {
+			return null
+		}
 
-        const valid = await bcrypt.compare(password, user.password)
+		const valid = await bcrypt.compare(password, user.password)
 
-        if (!valid) {
-            return null
-        }
+		if (!valid) {
+			return null
+		}
 
-        return user;
-    }
+		return user
+	}
 }

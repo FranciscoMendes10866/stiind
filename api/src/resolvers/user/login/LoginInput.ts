@@ -1,5 +1,5 @@
-import { IsEmail } from "class-validator";
-import { Field, InputType } from "type-graphql";
+import { IsEmail } from 'class-validator'
+import { Field, InputType } from 'type-graphql'
 
 @InputType()
 export class LoginInput {
@@ -9,5 +9,4 @@ export class LoginInput {
 
     @Field()
     password: string
-
 }
