@@ -8,12 +8,20 @@ import cors from 'cors'
 import { RegisterResolver } from '@user/Register'
 import { LoginResolver } from '@user/Login'
 import { TestResolver } from '@patients/TestResolver'
+import { CreatePatientResolver } from '@patients/Create'
+import { FindAllResolver } from '@patients/FindAll'
 
 const main = async () => {
 	await createConnection()
 
 	const schema = await buildSchema({
-		resolvers: [RegisterResolver, LoginResolver, TestResolver],
+		resolvers: [
+			RegisterResolver, 
+			LoginResolver, 
+			TestResolver,
+			CreatePatientResolver,
+			FindAllResolver
+		],
 		authChecker: ({ context: { req } }) => {
 			const bearer = req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'
 			return !!bearer

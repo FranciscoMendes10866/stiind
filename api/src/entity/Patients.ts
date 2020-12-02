@@ -22,7 +22,7 @@ export class Patients extends BaseEntity {
 
     @Field()
     @Column()
-    age: string
+    age: number
 
     @Field()
     @Column()
