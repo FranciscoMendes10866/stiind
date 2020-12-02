@@ -16,8 +16,8 @@ export class RegisterResolver {
     @Mutation(() => User)
     async register(
         @Arg('data') {
-        	firstName,
-        	lastName,
+        	first_name,
+        	last_name,
         	email,
         	password,
         	role,
@@ -27,14 +27,14 @@ export class RegisterResolver {
 
     	let setRole
     	if (role === null) {
-    		setRole = 'family'
+    		setRole = 'relative'
     	} else {
     		setRole = role
     	}
 
     	const user = await User.create({
-    		firstName,
-    		lastName,
+    		first_name,
+    		last_name,
     		email,
     		role: setRole,
     		password: hashedPassword,

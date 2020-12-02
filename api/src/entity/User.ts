@@ -15,11 +15,11 @@ export class User extends BaseEntity {
 
     @Field()
     @Column()
-    firstName: string
+    first_name: string
 
     @Field()
     @Column()
-    lastName: string
+    last_name: string
 
     @Field()
     @Column('text', { unique: true })
@@ -29,12 +29,12 @@ export class User extends BaseEntity {
     password: string
 
     @Field()
-    @Column('text', { default: 'family' })
+    @Column('text', { default: 'relative' })
     role: string
 
     @Field()
     name(@Root() parent: User): string {
-    	return `${parent.firstName} ${parent.lastName}`
+    	return `${parent.first_name} ${parent.last_name}`
     }
 
     @Field()
