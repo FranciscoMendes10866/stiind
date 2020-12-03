@@ -23,13 +23,12 @@ export class DeleteResolver {
         const collection = []
         verify(token, 'Fj54j1MvNRh0ZLt', (err, cred: TokenInterface) => {
             if (err) {
-                collection.push('An error occured.')
-                return collection[0]
+                return null
             }
             return collection.push(cred.id, cred.role)
         })
-        // returns the data according to patient id
-        if (collection[0] && id) {
+        // deletes a given elderly if the user is an admin
+        if (collection[1] === 'admin' && id) {
             const exist = await Patients.findOne(id)
             if (!exist) {
                 return false

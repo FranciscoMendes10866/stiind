@@ -29,7 +29,7 @@ export class FindOneResolver {
             return collection.push(cred.id, cred.role)
         })
         // returns the data according to patient id
-        if (collection[0] && id) {
+        if (collection[1] && id) {
             const patient = await Patients.findOne(id)
             return patient
         }
