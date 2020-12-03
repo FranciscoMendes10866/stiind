@@ -10,17 +10,16 @@ import { TokenInterface } from '@interfaces/TokenInterface'
 @Resolver()
 export class FindAllResolver {
     @Authorized()
-    @Query(() => [Patients])
+    @Query(() => [Patients], { nullable: true })
     async FindAll(
         @Ctx() ctx: RequestContext,
-    ): Promise<Patients[]> {
+    ): Promise<Patients[] | null> {
         // gets the token and stores it into the collection array
         const token = ctx.req.headers.authorization.split(' ')[1]
         const collection = []
         verify(token, 'Fj54j1MvNRh0ZLt', (err, cred: TokenInterface) => {
             if (err) {
-                collection.push('An error occured.')
-                return collection[0]
+                return null
             }
             return collection.push(cred.id, cred.role)
         })

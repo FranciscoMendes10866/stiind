@@ -8,11 +8,6 @@ import { RegisterInput } from './register/RegisterInput'
 
 @Resolver()
 export class RegisterResolver {
-    @Query(() => String)
-	async hello() {
-		return await 'Hello World'
-	}
-
     @Mutation(() => User)
     async register(
         @Arg('data') {
