@@ -10,6 +10,7 @@ import { CreatePatientResolver } from '@patients/Create'
 import { FindAllResolver } from '@patients/FindAll'
 import { FindOneResolver } from '@patients/FindOne'
 import { DeleteResolver } from '@patients/Delete'
+import { UpdateResolver } from '@patients/Update'
 
 (async () => {
 	await createConnection()
@@ -21,7 +22,8 @@ import { DeleteResolver } from '@patients/Delete'
 			CreatePatientResolver,
 			FindAllResolver,
 			FindOneResolver,
-			DeleteResolver
+			DeleteResolver,
+			UpdateResolver
 		],
 		authChecker: ({ context: { req } }) => {
 			const bearer = req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'
