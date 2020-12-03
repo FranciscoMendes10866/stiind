@@ -3,26 +3,25 @@ import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 import { buildSchema } from 'type-graphql'
 import { createConnection } from 'typeorm'
-import cors from 'cors'
 
 import { RegisterResolver } from '@user/Register'
 import { LoginResolver } from '@user/Login'
-import { TestResolver } from '@patients/TestResolver'
 import { CreatePatientResolver } from '@patients/Create'
 import { FindAllResolver } from '@patients/FindAll'
 import { FindOneResolver } from '@patients/FindOne'
+import { DeleteResolver } from '@patients/Delete'
 
-const main = async () => {
+(async () => {
 	await createConnection()
 
 	const schema = await buildSchema({
 		resolvers: [
-			RegisterResolver, 
-			LoginResolver, 
-			TestResolver,
+			RegisterResolver,
+			LoginResolver,
 			CreatePatientResolver,
 			FindAllResolver,
-			FindOneResolver
+			FindOneResolver,
+			DeleteResolver
 		],
 		authChecker: ({ context: { req } }) => {
 			const bearer = req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'
@@ -50,6 +49,4 @@ const main = async () => {
 	app.listen(4000, () => {
 		console.log(`🌈 Server started at http://localhost:4000${server.graphqlPath} 🦄`)
 	})
-}
-
-main()
+})()
