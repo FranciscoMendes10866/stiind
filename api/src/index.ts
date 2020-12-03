@@ -10,6 +10,7 @@ import { LoginResolver } from '@user/Login'
 import { TestResolver } from '@patients/TestResolver'
 import { CreatePatientResolver } from '@patients/Create'
 import { FindAllResolver } from '@patients/FindAll'
+import { FindOneResolver } from '@patients/FindOne'
 
 const main = async () => {
 	await createConnection()
@@ -20,7 +21,8 @@ const main = async () => {
 			LoginResolver, 
 			TestResolver,
 			CreatePatientResolver,
-			FindAllResolver
+			FindAllResolver,
+			FindOneResolver
 		],
 		authChecker: ({ context: { req } }) => {
 			const bearer = req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer'
