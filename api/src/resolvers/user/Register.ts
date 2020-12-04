@@ -1,7 +1,7 @@
 import {
-	Resolver, Query, Mutation, Arg,
+	Resolver, Mutation, Arg,
 } from 'type-graphql'
-import bcrypt from 'bcrypt'
+import { hash } from 'bcrypt'
 
 import { User } from '@entity/User'
 import { RegisterInput } from './register/RegisterInput'
@@ -18,7 +18,7 @@ export class RegisterResolver {
         	role,
         }: RegisterInput,
     ): Promise<User> {
-    	const hashedPassword = await bcrypt.hash(password, 4)
+    	const hashedPassword = await hash(password, 4)
 
     	let setRole
     	if (role === null) {
