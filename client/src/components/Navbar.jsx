@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { AddElderly } from '.'
 
 const Navbar = () => {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { toggleColorMode } = useColorMode()
     return (
         <Flex
             justify="space-between"
