@@ -24,10 +24,10 @@ export class FindAllResolver {
             return collection.push(cred.id, cred.role)
         })
         // returns the data according to the user role
-        if (collection[1] === 'admin') {
+        if (collection[1] === 'Admin') {
             const patients = await Patients.find()
             return patients
-        } else if (collection[1] === 'caregiver') {
+        } else if (collection[1] === 'Caregiver') {
             const patients = await Patients.find({ where: { caregiver_id: collection[0] } })
             return patients
         } else {

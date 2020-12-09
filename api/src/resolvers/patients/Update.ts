@@ -37,7 +37,7 @@ export class UpdateResolver {
             return collection.push(cred.id, cred.role)
         })
         // updates a given elderly if the user is an admin
-        if (collection[1] === 'admin' && id) {
+        if (collection[1] === 'Admin' && id) {
             const user = await Patients.findOne(id)
             if (!user) {
                 return null

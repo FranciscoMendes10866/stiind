@@ -36,7 +36,7 @@ export class CreatePatientResolver {
             return collection.push(cred.id, cred.role)
         })
         // creates a new elderly if the user is an admin
-        if (collection[1] === 'admin') {
+        if (collection[1] === 'Admin') {
             const patient = await Patients.create({
                 first_name,
                 last_name,

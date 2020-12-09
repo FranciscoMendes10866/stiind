@@ -28,7 +28,7 @@ export class DeleteResolver {
             return collection.push(cred.id, cred.role)
         })
         // deletes a given elderly if the user is an admin
-        if (collection[1] === 'admin' && id) {
+        if (collection[1] === 'Admin' && id) {
             const exist = await Patients.findOne(id)
             if (!exist) {
                 return false
