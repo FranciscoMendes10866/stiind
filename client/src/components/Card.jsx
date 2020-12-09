@@ -32,7 +32,7 @@ const Card = () => {
                                 fontSize="md"
                                 fontWeight="bold"
                             >
-                                {patient.full_name} &bull;
+                                {patient.first_name} {patient.last_name}  &bull;
                          </Text>
                             <Badge ml={1} colorScheme="teal">{patient.age} years old</Badge>
                         </Flex>
@@ -43,7 +43,7 @@ const Card = () => {
                         </Text>
                         {stateRole === 'Admin' && (
                             <Flex align="baseline" mt={4}>
-                                <Modal />
+                                <Modal patient={patient} />
                                 <Button onClick={() => handleDelete(patient.id)} ml={2} size="sm" colorScheme="pink">Remove</Button>
                             </Flex>
                         )}

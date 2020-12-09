@@ -11,12 +11,15 @@ const GetPatient = () => async (dispatch, getState) => {
     query {
         FindAll {
             id
-            full_name
+            first_name
+            last_name
             age
             gender
             maritual_status
             location
             picture
+            relative_id
+            caregiver_id
         }
     }
   `

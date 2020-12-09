@@ -1,13 +1,11 @@
 import { GraphQLClient, gql } from 'graphql-request'
 
-const CreatePatient = (formData) => async (dispatch, getState) => {
+const Update = (formData) => async (dispatch, getState) => {
     const stateToken = getState().auth.token
     const stateRole = getState().auth.role
 
     if (stateRole !== 'Admin') {
         console.log('You are not an admin.')
-    } else if (stateToken === null) {
-        console.log('You should be logged in.')
     }
 
     const baseURL = 'http://localhost:4000/graphql'
@@ -15,7 +13,8 @@ const CreatePatient = (formData) => async (dispatch, getState) => {
     client.setHeader('authorization', `Bearer ${stateToken}`)
 
     const mutation = gql`
-    mutation CreatePatient(
+    mutation Update(
+        $id: Float!,
         $first_name: String!,
         $last_name: String!,
         $age: Float!,
@@ -25,7 +24,9 @@ const CreatePatient = (formData) => async (dispatch, getState) => {
         $picture: String!,
         $relative_id: Float!,
         $caregiver_id: Float!,
-      ) { CreatePatient(data: { 
+    ) {
+        Update(data: {
+          id: $id,
           first_name: $first_name,
           last_name: $last_name,
           age: $age,
@@ -35,22 +36,23 @@ const CreatePatient = (formData) => async (dispatch, getState) => {
           picture: $picture,
           relative_id: $relative_id,
           caregiver_id: $caregiver_id,
-      }) {
-        id
-        first_name
-        last_name
-        age
-        gender
-        maritual_status
-        location
-        picture
-        relative_id
-        caregiver_id
-      }
+        }) {
+            id
+            first_name
+            last_name
+            age
+            gender
+            maritual_status
+            location
+            picture
+            relative_id
+            caregiver_id
+        }
     }
-  `
+    `
 
     const variables = {
+        id: Number(formData.id),
         first_name: formData.firstName,
         last_name: formData.lastName,
         age: Number(formData.age),
@@ -63,13 +65,13 @@ const CreatePatient = (formData) => async (dispatch, getState) => {
     }
 
     await client.request(mutation, variables)
-        .then(({ CreatePatient }) => {
+        .then(({ Update }) => {
             dispatch({
-                type: 'CREATE_PATIENT',
-                payload: CreatePatient
+                type: 'EDIT_PATIENT',
+                payload: Update
             })
         })
         .catch(err => console.log(err))
 }
 
-export default CreatePatient
+export default Update
