@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 
 import { Modal } from '.'
 import GetPatients from '../store/actions/patients/Get'
+import Delete from '../store/actions/patients/Delete'
 
 const Card = () => {
     const stateRole = useSelector(state => state.auth.role)
@@ -11,6 +12,9 @@ const Card = () => {
     const dispatch = useDispatch()
     const handleFetch = () => {
         dispatch(GetPatients())
+    }
+    const handleDelete = (id) => {
+        dispatch(Delete(id))
     }
     if(stateRole !== null) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -40,7 +44,7 @@ const Card = () => {
                         {stateRole === 'Admin' && (
                             <Flex align="baseline" mt={4}>
                                 <Modal />
-                                <Button ml={2} size="sm" colorScheme="pink">Remove</Button>
+                                <Button onClick={() => handleDelete(patient.id)} ml={2} size="sm" colorScheme="pink">Remove</Button>
                             </Flex>
                         )}
                     </Box>
