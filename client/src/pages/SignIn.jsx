@@ -1,6 +1,28 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { Flex, Box, Heading, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
 
+import SignInAction from '../store/actions/auth/SignIn'
+
 const SignIn = () => {
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    })
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const handleOnChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value })
+    }
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        dispatch(SignInAction(form, history))
+        setForm({
+            email: '',
+            password: ''
+        })
+    }
     return (
         <Flex minHeight='calc(100vh - 56px)' width='full' align='center' justifyContent='center'>
             <Box
@@ -20,13 +42,13 @@ const SignIn = () => {
                         <form>
                             <FormControl mt={2}>
                                 <FormLabel>Email address</FormLabel>
-                                <Input type='email' placeholder='Enter your email address' />
+                                <Input value={form.email} onChange={handleOnChange} name="email" type='email' placeholder='Enter your email address' />
                             </FormControl>
                             <FormControl mt={2}>
                                 <FormLabel>Password</FormLabel>
-                                <Input type='password' placeholder='Enter your password' />
+                                <Input value={form.password} onChange={handleOnChange} name="password" type='password' placeholder='Enter your password' />
                             </FormControl>
-                            <Button width='full' mt={6} colorScheme="teal">Sign in</Button>
+                            <Button onClick={handleOnSubmit} width='full' mt={6} colorScheme="teal">Sign in</Button>
                         </form>
                     </Box>
                 </Box>

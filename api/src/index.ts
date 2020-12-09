@@ -40,9 +40,6 @@ import { UpdateResolver } from '@patients/Update'
 	const path = '/graphql'
 	const corsOptions = {
 		origin: '*',
-		methods: 'POST',
-		exposedHeaders: 'Authorization',
-		allowedHeaders: 'Authorization',
 		credentials: true,
 	}
 
