@@ -31,44 +31,18 @@ const Navbar = () => {
                 </Heading>
             </Box>
             <Box>
-                {stateRole === 'caregiver' && (
-                    <Avatar
-                        mt="1"
-                        pt="1"
-                        size="sm"
-                        mr="4"
-                        align="center"
-                        src="https://bit.ly/3lTiDU5"
-                    >
-                        <AvatarBadge boxSize="14px" bg="green.500" />
-                    </Avatar>
-                )}
-                {stateRole === 'admin' && (
-                    <Avatar
-                        mt="1"
-                        pt="1"
-                        size="sm"
-                        mr="4"
-                        align="center"
-                        src="https://bit.ly/39Kl892"
-                    >
-                        <AvatarBadge boxSize="14px" bg="green.500" />
-                    </Avatar>
-                )}
-                {stateRole === 'relative' && (
-                    <Avatar
-                        mt="1"
-                        pb="1"
-                        size="sm"
-                        mr="4"
-                        align="center"
-                        src="https://bit.ly/2JJSABP"
-                    >
-                        <AvatarBadge boxSize="14px" bg="green.500" />
-                    </Avatar>
-                )}
                 {stateRole === 'Admin' && (
                     <>
+                        <Avatar
+                            mt="1"
+                            pt="1"
+                            size="sm"
+                            mr="4"
+                            align="center"
+                            src="https://bit.ly/39Kl892"
+                        >
+                            <AvatarBadge boxSize="14px" bg="green.500" />
+                        </Avatar>
                         <AddElderly />
                         <Button as={Link} to="/admin" colorScheme="teal" mr="4">
                             Home
@@ -76,14 +50,38 @@ const Navbar = () => {
                     </>
                 )}
                 {stateRole === 'Caregiver' && (
-                    <Button as={Link} to="/caregiver" colorScheme="teal" mr="4">
-                        Home
-                    </Button>
+                    <>
+                        <Avatar
+                            mt="1"
+                            pt="1"
+                            size="sm"
+                            mr="4"
+                            align="center"
+                            src="https://bit.ly/3lTiDU5"
+                        >
+                            <AvatarBadge boxSize="14px" bg="green.500" />
+                        </Avatar>
+                        <Button as={Link} to="/caregiver" colorScheme="teal" mr="4">
+                            Home
+                        </Button>
+                    </>
                 )}
                 {stateRole === 'Relative' && (
-                    <Button as={Link} to="/relative" colorScheme="teal" mr="4">
-                        Home
-                    </Button>
+                    <>
+                        <Avatar
+                            mt="1"
+                            pb="1"
+                            size="sm"
+                            mr="4"
+                            align="center"
+                            src="https://bit.ly/2JJSABP"
+                        >
+                            <AvatarBadge boxSize="14px" bg="green.500" />
+                        </Avatar>
+                        <Button as={Link} to="/relative" colorScheme="teal" mr="4">
+                            Home
+                        </Button>
+                    </>
                 )}
                 {stateRole === null && (
                     <>
